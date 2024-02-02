@@ -19,6 +19,11 @@ button{
     background-color: antiquewhite;
     margin: auto;
     border-radius: 5px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 10px;
+    font-size: 48px;
 
 }
 
@@ -28,4 +33,9 @@ button{
     flex-wrap: wrap;
     gap: 5px;
     justify-content: space-between;
+}
+
+body {
+    padding: 200px;
+    background-color: rgba(21, 21, 27, 0.705);
 }
