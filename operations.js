@@ -1,19 +1,15 @@
 function add (a, b){
     return a + b;
 };
-
 function subtract (a, b){
     return a - b;
 };
-
 function multiply (a, b){
     return a * b;
 };
-
 function divide (a, b){
     return a / b;
 };
-
 function operate (a, op, b){
     if (op === '+') {
         return add (a, b);
@@ -27,15 +23,12 @@ function operate (a, op, b){
     else if (op === '÷') {
         return divide (a, b);
     }
-
 }
-
 let operatorsArray = [];
 let numbersArray = [];
 let lastdigitNum = 0;
 let lastdigitOp = 0;
 let totaldigits = 0;
-
 function display (variable){
     const screen = document.querySelector("#display");
     if(screen.textContent === 'ERROR' || totaldigits > 10) return (screen.textContent = 'ERROR');
@@ -58,24 +51,17 @@ function display (variable){
         lastdigitNum = 0;
         lastdigitOp = 1;
         totaldigits += 1;
-    }
-
-    
+    }  
     screen.textContent += variable;
-    
 }
-
 const nums = document.querySelectorAll ('.number');
 for (const num of nums){
     num.addEventListener('click', () => display(Number(num.textContent)));
 }
-
 const opes = document.querySelectorAll ('.operator');
 for (const ope of opes){
     ope.addEventListener('click', () => display(ope.textContent));
 }
-
-
 const eraseButton = document.querySelector('#AC');
 eraseButton.addEventListener('click', ()=> {
     const screen = document.querySelector("#display");
@@ -87,3 +73,18 @@ eraseButton.addEventListener('click', ()=> {
     lastdigitOp = 0;
 });
 
+const equals = document.querySelector('#equals');
+equals.addEventListener('click', () => {
+    const screen = document.querySelector("#display");
+    if(screen.textContent === 'ERROR') return (screen.textContent = 'ERROR');
+    while (numbersArray.length > 1){
+        let store = operate(numbersArray[0],operatorsArray[0],numbersArray[1]);
+        console.log(store);
+        numbersArray.shift();
+        numbersArray.shift();
+        numbersArray.unshift(store);
+        operatorsArray = operatorsArray.slice(1);
+    };
+    
+    screen.textContent = numbersArray[0];
+});
